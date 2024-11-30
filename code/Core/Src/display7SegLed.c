@@ -110,9 +110,6 @@ void updateBufer(){
     led_buffer[3] = (time24 > 99) ? 9 : (time24 % 10);
 }
 
-
-
-
 void update7SegLed(int index){
     HAL_GPIO_WritePin(en1_GPIO_Port, en1_Pin, SET);
     HAL_GPIO_WritePin(en2_GPIO_Port, en2_Pin, SET);
@@ -148,14 +145,14 @@ void updateTimeForState(int status){
 		time24 = timeGreen;
 		break;
 	case RED13_YELLOW24:
-		time24 = timeYellow;
+		time24 = timeYellow+1;
 		break;
 	case GREEN13_RED24:
-		time13 = timeGreen;
-		time24 = timeRed;
+		time13 = timeGreen+1;
+		time24 = timeRed+1;
 		break;
 	case YELLOW13_RED24:
-		time13 = timeYellow;
+		time13 = timeYellow+1;
 		break;
 	default:
 		break;

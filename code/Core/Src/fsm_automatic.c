@@ -9,7 +9,8 @@ void fsm_automatic(){
 		status = RED13_GREEN24;
 		led_index = 0;
 		setTimer(1 , timeGreen*1000);
-		setTimer(2 , 250);
+		//setTimer(2 , 250);
+		timer_flag[2] = 1;
 		setTimer(0 , 1000);
 
 		updateTimeForState(status);
@@ -31,21 +32,18 @@ void fsm_automatic(){
 			setTimer(1 , timeYellow*1000);
 			updateTimeForState(status);
 		}
-//		if(isTimerFlagSet(0)){
-//			time13--;
-//			time24--;
-//			updateBufer();
-//			setTimer(0 , 1000);
-//		}
+		if(isTimerFlagSet(0)){
+			time13--;
+			time24--;
+			updateBufer();
+			setTimer(0 , 1000);
+		}
 		if(isTimerFlagSet(2)){
 			setTimer(2 , 250);
 			update7SegLed(led_index);
 			led_index++;
 			if(led_index >= 4){
 				led_index = 0;
-				time13--;
-				time24--;
-				updateBufer();
 			}
 		}
 
@@ -77,16 +75,18 @@ void fsm_automatic(){
 			setTimer(1 , timeGreen*1000);
 			updateTimeForState(status);
 		}
+		if(isTimerFlagSet(0)){
+			time13--;
+			time24--;
+			updateBufer();
+			setTimer(0 , 1000);
+		}
 		if(isTimerFlagSet(2)){
 			update7SegLed(led_index);
 			setTimer(2 , 250);
 			led_index++;
 			if(led_index >= 4){
 				led_index = 0;
-				time13--;
-				time24--;
-				updateBufer();
-
 			}
 		}
 
@@ -102,7 +102,6 @@ void fsm_automatic(){
 		break;
 /////////////////////////////////////////////////
 	case GREEN13_RED24:
-		updateTimeForState(status);
 		//set cho lane 13
 		HAL_GPIO_WritePin(RED_13_GPIO_Port , RED_13_Pin , GPIO_PIN_SET);
 		HAL_GPIO_WritePin(YELLOW_13_GPIO_Port , YELLOW_13_Pin , GPIO_PIN_SET);
@@ -117,15 +116,18 @@ void fsm_automatic(){
 			setTimer(1 , timeYellow*1000);
 			updateTimeForState(status);
 		}
+		if(isTimerFlagSet(0)){
+			time13--;
+			time24--;
+			updateBufer();
+			setTimer(0 , 1000);
+		}
 		if(isTimerFlagSet(2)){
 			update7SegLed(led_index);
 			setTimer(2 , 250);
 			led_index++;
 			if(led_index >= 4){
 				led_index = 0;
-				time13--;
-				time24--;
-				updateBufer();
 			}
 		}
 
@@ -140,7 +142,6 @@ void fsm_automatic(){
 		break;
 ///////////////////////////////////////////////////
 	case YELLOW13_RED24:
-		updateTimeForState(status);
 		//set cho lane 13
 		HAL_GPIO_WritePin(RED_13_GPIO_Port , RED_13_Pin , GPIO_PIN_SET);
 		HAL_GPIO_WritePin(YELLOW_13_GPIO_Port , YELLOW_13_Pin , GPIO_PIN_RESET);
@@ -151,9 +152,15 @@ void fsm_automatic(){
 		HAL_GPIO_WritePin(GREEN_24_GPIO_Port , GREEN_24_Pin , GPIO_PIN_SET);
 
 		if(isTimerFlagSet(1) == 1){
-			status = RED13_GREEN24;
-			setTimer(1 , timeGreen*1000);
+			status = INIT;
+			//setTimer(1 , timeGreen*1000);
 			updateTimeForState(status);
+		}
+		if(isTimerFlagSet(0)){
+			time13--;
+			time24--;
+			updateBufer();
+			setTimer(0 , 1000);
 		}
 		if(isTimerFlagSet(2)){
 			update7SegLed(led_index);
@@ -161,9 +168,6 @@ void fsm_automatic(){
 			led_index++;
 			if(led_index >= 4){
 				led_index = 0;
-				time13--;
-				time24--;
-				updateBufer();
 			}
 		}
 		if(isButtonPressed(MODE_BUTTON)==1){

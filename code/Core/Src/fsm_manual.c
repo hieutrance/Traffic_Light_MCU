@@ -98,7 +98,7 @@ void fsm_manual(){
 		break;
 /////////////////////////////////////////////////////////////
 	case MODIFY_GREEN:
-		time13 = temp_time;
+		time13 = timeRed - timeYellow;
 		time24 = 4;
 		if(isTimerFlagSet(1)==1){
 			HAL_GPIO_TogglePin(GREEN_13_GPIO_Port , GREEN_13_Pin);
@@ -117,18 +117,11 @@ void fsm_manual(){
 			}
 		}
 
-		if(isButtonPressed(MODIFY_BUTTON)){   // nhan tha --> +1
-			temp_time++;
-		}
-		if(isButtonLongPressed(MODIFY_BUTTON)){ // nhan de --> +5
-			temp_time += 5;
-		}
-
 		if(isButtonPressed(SET_BUTTON)){
 			turnoff_green();
 			status = INIT;
 
-			timeGreen = temp_time;
+			timeGreen = time13;
 			temp_time = 1;
 			time13 = timeRed;
 			time24 = timeGreen;
