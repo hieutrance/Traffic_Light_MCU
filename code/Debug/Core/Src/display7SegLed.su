@@ -1,0 +1,5 @@
+../Core/Src/display7SegLed.c:6:6:display7SegLed	16	static
+../Core/Src/display7SegLed.c:105:6:updateBufer	4	static
+../Core/Src/display7SegLed.c:116:6:update7SegLed	16	static
+../Core/Src/display7SegLed.c:144:6:updateTimeForState	16	static
+../Core/Src/display7SegLed.c:165:6:turnOffAll7Seg	8	static

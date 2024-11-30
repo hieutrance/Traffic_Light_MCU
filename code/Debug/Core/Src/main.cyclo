@@ -1,0 +1,9 @@
+../Core/Src/main.c:62:6:turnoff_red	1
+../Core/Src/main.c:66:6:turnoff_yellow	1
+../Core/Src/main.c:70:6:turnoff_green	1
+../Core/Src/main.c:81:5:main	1
+../Core/Src/main.c:131:6:SystemClock_Config	3
+../Core/Src/main.c:168:13:MX_TIM2_Init	4
+../Core/Src/main.c:213:13:MX_GPIO_Init	1
+../Core/Src/main.c:265:6:HAL_TIM_PeriodElapsedCallback	1
+../Core/Src/main.c:274:6:Error_Handler	1

@@ -1,0 +1,9 @@
+../Core/Src/main.c:62:6:turnoff_red	8	static
+../Core/Src/main.c:66:6:turnoff_yellow	8	static
+../Core/Src/main.c:70:6:turnoff_green	8	static
+../Core/Src/main.c:81:5:main	8	static
+../Core/Src/main.c:131:6:SystemClock_Config	72	static
+../Core/Src/main.c:168:13:MX_TIM2_Init	32	static
+../Core/Src/main.c:213:13:MX_GPIO_Init	32	static
+../Core/Src/main.c:265:6:HAL_TIM_PeriodElapsedCallback	16	static
+../Core/Src/main.c:274:6:Error_Handler	4	static,ignoring_inline_asm
