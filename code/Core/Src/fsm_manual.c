@@ -7,6 +7,7 @@ void fsm_manual(){
 	switch(status){
 /////////////////////////////////////////////////////////////
 	case MODIFY_RED:
+		temp_timeRed = timeRed;
 		time13 = temp_time;
 		time24 = 2;
 		if(isTimerFlagSet(1)==1){
@@ -52,6 +53,7 @@ void fsm_manual(){
 		break;
 /////////////////////////////////////////////////////////////
 	case MODIFY_YELLOW:
+		temp_timeYellow = timeYellow;
 		time13 = temp_time;
 		time24 = 3;
 
@@ -98,8 +100,22 @@ void fsm_manual(){
 		break;
 /////////////////////////////////////////////////////////////
 	case MODIFY_GREEN:
-		time13 = timeRed - timeYellow;
-		time24 = 4;
+
+		if(timeRed > timeYellow){
+			time13 = timeRed - timeYellow;
+			time24 = 4;
+			timeGreen = time13;
+			updateBufer();
+		}
+		else{
+			timeRed = temp_timeRed;
+			timeYellow = temp_timeYellow;
+
+			time13 = 0;
+			time24 = 4;
+			updateBufer();
+		}
+
 		if(isTimerFlagSet(1)==1){
 			HAL_GPIO_TogglePin(GREEN_13_GPIO_Port , GREEN_13_Pin);
 			HAL_GPIO_TogglePin(GREEN_24_GPIO_Port , GREEN_24_Pin);
@@ -120,8 +136,6 @@ void fsm_manual(){
 		if(isButtonPressed(SET_BUTTON)){
 			turnoff_green();
 			status = INIT;
-
-			timeGreen = time13;
 			temp_time = 1;
 			time13 = timeRed;
 			time24 = timeGreen;
@@ -131,6 +145,9 @@ void fsm_manual(){
 			turnoff_green();
 			status = INIT;
 		}
+
+
+
 		break;
 	default:
 		break;
