@@ -32,6 +32,6 @@ extern int timeGreen;
 extern int timeYellow;
 extern int temp_timeRed;
 extern int temp_timeYellow;
-extern int temp_timeGreen;
+
 
 #endif /* INC_GLOBAL_H_ */

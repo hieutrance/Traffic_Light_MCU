@@ -6,7 +6,6 @@ int timeGreen = 3;
 int timeYellow = 2;
 int temp_timeRed;
 int temp_timeYellow;
-int temp_timeGreen;
 
 int status;
 int time13;

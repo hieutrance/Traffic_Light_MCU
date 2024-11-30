@@ -49,7 +49,6 @@ void fsm_manual(){
 			setTimer(1 , 500);
 			temp_time = 1;
 		}
-
 		break;
 /////////////////////////////////////////////////////////////
 	case MODIFY_YELLOW:
@@ -100,6 +99,8 @@ void fsm_manual(){
 		break;
 /////////////////////////////////////////////////////////////
 	case MODIFY_GREEN:
+// neu den vang < den do -> den xanh = den do - den vang
+// neu den vang > den do -> tra ve thoi gian mac dinh cho ca 3 den
 
 		if(timeRed > timeYellow){
 			time13 = timeRed - timeYellow;
@@ -132,7 +133,6 @@ void fsm_manual(){
 				index = 0;
 			}
 		}
-
 		if(isButtonPressed(SET_BUTTON)){
 			turnoff_green();
 			status = INIT;
@@ -140,14 +140,11 @@ void fsm_manual(){
 			time13 = timeRed;
 			time24 = timeGreen;
 		}
-
 		if(isButtonPressed(MODE_BUTTON)==1){
 			turnoff_green();
+			temp_time = 1;
 			status = INIT;
 		}
-
-
-
 		break;
 	default:
 		break;
