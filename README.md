@@ -85,3 +85,6 @@ Debug/
 1. Clone the repository:
    ```bash
    git clone https://github.com/hieutrance/Traffic_Light_MCU.git
+3. Open the project in STM32CubeIDE.
+2. Build and flash to STM32F103RB board.
+
